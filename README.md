@@ -1,5 +1,17 @@
-# Respawn Kits
-Simple give a kit for the player every time he respawn in the server
+# Arena Kits
+Give player prefixed kits in arena mode
+
+- Players cannot use /kit command when arena is active
+- Players will automatically receive kits when spawning or joining the server
+- Selected kit will be saved for each player
+
+### Using
+Opening the configs inside Rocket/Plugins/ArenaKits/..., you can add new kits, after creating your kit go to ``Permission.config.xml`` inside Rocket folder, add a new line
+```
+<Permission Cooldown="0">arenakit.MyKit</Permission>
+```
+
+The kits should accept kitnames with spaces
 
 # Building
 
