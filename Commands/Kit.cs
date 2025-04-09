@@ -26,7 +26,21 @@ namespace ArenaKits.Commands
         {
             UnturnedPlayer player = (UnturnedPlayer)caller;
 
-            if (LevelManager.arenaState == EArenaState.PLAY)
+            if (ArenaKitsPlugin.instance!.Configuration.Instance.KitCommandArenaPlayingCheck && LevelManager.arenaState == EArenaState.PLAY)
+            {
+                ChatManager.serverSendMessage(
+                    ArenaKitsPlugin.instance!.Translate("kit_unavailable"),
+                    new UnityCoreModule.Color(0, 255, 0),
+                    null,
+                    player.SteamPlayer(),
+                    EChatMode.SAY,
+                    ArenaKitsPlugin.instance!.Configuration.Instance.ChatIconURL,
+                    true
+                );
+                return;
+            }
+
+            if (ArenaKitsPlugin.instance!.Configuration.Instance.KitCommandOnlyInArea && ArenaKitsPlugin.PlayersInArea.Contains(player.Id))
             {
                 ChatManager.serverSendMessage(
                     ArenaKitsPlugin.instance!.Translate("kit_unavailable"),
@@ -72,7 +86,6 @@ namespace ArenaKits.Commands
                     true
                 );
             }
-
         }
     }
 }

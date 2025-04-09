@@ -11,12 +11,26 @@ namespace ArenaKits
         public int DatabasePort = 3306;
         public string ArenaKitsTableName = "arenakits";
         public string ChatIconURL = "https://add-image-url.com";
-
+        public bool KitCommandOnlyInArea = false;
+        public bool KitCommandArenaPlayingCheck = true;
+        public List<KitAreas> KitCommandAreas = [];
         public List<Kit> Items = [];
+
         public void LoadDefaults()
         {
-            Items =
-            [
+            KitCommandAreas = [
+                new()
+                {
+                    X1 = 431.41,
+                    X2 = 440.92,
+                    Y1 = 51.00,
+                    Y2 = 54.00,
+                    Z1 = 437.25,
+                    Z2 = 447.05
+                }
+            ];
+
+            Items = [
                 new()
                 {
                     name = "Hunter",
@@ -163,5 +177,15 @@ namespace ArenaKits
         public byte Toughness = 0;
         public byte Vitality = 0;
         public byte Warmblooded = 0;
+    }
+
+    public class KitAreas
+    {
+        public double X1;
+        public double Y1;
+        public double Z1;
+        public double X2;
+        public double Y2;
+        public double Z2;
     }
 }

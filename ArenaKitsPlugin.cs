@@ -14,6 +14,7 @@ namespace ArenaKits;
 public class ArenaKitsPlugin : RocketPlugin<ArenaKitsConfiguration>
 {
     static public ArenaKitsPlugin? instance = null;
+    static public List<string> PlayersInArea = [];
     static public DatabaseMgr? Database;
 
     public override void LoadPlugin()
@@ -23,6 +24,9 @@ public class ArenaKitsPlugin : RocketPlugin<ArenaKitsConfiguration>
         base.LoadPlugin();
         Logger.Log("ArenaKits by LeandroTheDev");
         Rocket.Unturned.U.Events.OnPlayerConnected += OnPlayerConnected;
+
+        if (Configuration.Instance.KitCommandOnlyInArea)
+            Rocket.Unturned.Events.UnturnedPlayerEvents.OnPlayerUpdatePosition += PositionUpdate;
 
         instance = this;
     }
@@ -35,6 +39,33 @@ public class ArenaKitsPlugin : RocketPlugin<ArenaKitsConfiguration>
         player.Events.OnRevive += PlayerRevived;
 
         DefaultKit(player);
+    }
+
+    private void PositionUpdate(UnturnedPlayer player, UnityCoreModule.Vector3 position)
+    {
+        // Check if player is in the area
+        foreach (KitAreas area in Configuration.Instance.KitCommandAreas)
+        {
+            // Verify X position
+            if (position.x < area.X1 || position.x > area.X2)
+            {
+                PlayersInArea.Remove(player.Id);
+                return;
+            }
+            // Verify Y position
+            else if (position.y < area.Y1 || position.y > area.Y2)
+            {
+                PlayersInArea.Remove(player.Id);
+                return;
+            }
+            // Verifiy Z position
+            else if (position.z < area.Z1 || position.z > area.Z2)
+            {
+                PlayersInArea.Remove(player.Id);
+                return;
+            }
+        }
+        if (!PlayersInArea.Contains(player.Id)) PlayersInArea.Add(player.Id);
     }
 
     private void PlayerRevived(UnturnedPlayer player, UnityCoreModule.Vector3 position, byte angle)

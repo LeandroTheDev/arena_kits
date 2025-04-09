@@ -15,6 +15,12 @@ The kits should accept kitnames with spaces
 
 Metadata, used for storing gun mods, to get the metadata simple join the server and give yourself the guns, add the mods you wish, type the command /metadata, take a look in your server console and the metadata should be there
 
+### Configs
+- KitCommandOnlyInArea: Players can only use the kit command in configurated areas ``KitCommandAreas``
+- KitCommandArenaPlayingCheck: If arena is still running players cannot use the kit command
+- KitCommandAreas: Stores the areas for the ``KitCommandOnlyInArea``
+- Items: Stores the kits items
+
 # Building
 
 *Windows*: The project uses dotnet 4.8, consider installing into your machine, you need visual studio, simple open the solution file open the Build section and hit the build button (ctrl + shift + b) or you can do into powershell the command dotnet build -c Debug if you have installed dotnet 4.8.
