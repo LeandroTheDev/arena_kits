@@ -40,7 +40,7 @@ namespace ArenaKits.Commands
                 return;
             }
 
-            if (ArenaKitsPlugin.instance!.Configuration.Instance.KitCommandOnlyInArea && ArenaKitsPlugin.PlayersInArea.Contains(player.Id))
+            if (ArenaKitsPlugin.instance!.Configuration.Instance.KitCommandOnlyInArea && !ArenaKitsPlugin.PlayersInArea.Contains(player.Id))
             {
                 ChatManager.serverSendMessage(
                     ArenaKitsPlugin.instance!.Translate("kit_unavailable"),

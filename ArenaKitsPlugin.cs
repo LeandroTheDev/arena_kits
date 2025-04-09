@@ -49,18 +49,21 @@ public class ArenaKitsPlugin : RocketPlugin<ArenaKitsConfiguration>
             // Verify X position
             if (position.x < area.X1 || position.x > area.X2)
             {
+                // Logger.Log($"{position.x} : {area.X1},{area.X2}");
                 PlayersInArea.Remove(player.Id);
                 return;
             }
             // Verify Y position
             else if (position.y < area.Y1 || position.y > area.Y2)
             {
+                // Logger.Log($"{position.y} : {area.Y1},{area.Y2}");
                 PlayersInArea.Remove(player.Id);
                 return;
             }
             // Verifiy Z position
             else if (position.z < area.Z1 || position.z > area.Z2)
             {
+                // Logger.Log($"{position.z} : {area.Z1},{area.Z2}");
                 PlayersInArea.Remove(player.Id);
                 return;
             }
