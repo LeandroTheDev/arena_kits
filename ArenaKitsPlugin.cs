@@ -209,14 +209,13 @@ public class ArenaKitsUtils
 
     static public Kit GetRandomKit(UnturnedPlayer player)
     {
-        Random random = new();
         var kits = ArenaKitsPlugin.instance!.Configuration.Instance.Items;
 
         if (kits.Count == 0) return new Kit();
 
         for (int i = 0; i < 10; i++)
         {
-            int randomIndex = random.Next(kits.Count);
+            int randomIndex = UnityEngine.Random.Range(0, kits.Count);
             if (player.HasPermission($"arenakit.{kits[randomIndex].name}"))
             {
                 return kits[randomIndex];
