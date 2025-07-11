@@ -41,11 +41,11 @@ namespace ArenaKits.Commands
                             Logger.Log($"Item Name: {asset.itemName}");
                             if (itemJar.item.state?.Length > 0)
                             {
-                                Logger.Log($"Item State: {Convert.ToBase64String(itemJar.item.state)}");
+                                Logger.Log($"Item State: {Convert.ToBase64String(itemJar.item.state)} / {string.Join(",", itemJar.item.state.Select(b => b.ToString()))}");
                             }
                             if (itemJar.item.metadata?.Length > 0)
                             {
-                                Logger.Log($"Item Metadata: {Convert.ToBase64String(itemJar.item.metadata)}");
+                                Logger.Log($"Item Metadata: {Convert.ToBase64String(itemJar.item.metadata)} / {string.Join(",", itemJar.item.metadata.Select(b => b.ToString()))}");
                             }
                         }
                         Logger.Log("--------------- " + page + " ---------------");
